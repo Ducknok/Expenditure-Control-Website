@@ -1,0 +1,38 @@
+.color-linear {
+  background-image: linear-gradient(
+    to top left,
+    rgba(164, 217, 108, 1),
+    rgba(0, 180, 103, 1)
+  );
+}
+
+.checkbox {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  &::after {
+    visibility: hidden;
+    position: absolute;
+    content: "";
+    top: 0px;
+    left: 6px;
+    width: 12px;
+    height: 20px;
+    border-bottom: 4px solid #00a7b4;
+    border-right: 4px solid #00a7b4;
+    transform: rotate(45deg);
+  }
+}
+
+.label_check {
+  cursor: pointer;
+  font-size: 18px;
+}
+#check_box {
+  display: none;
+  &:checked + .checkbox::after {
+    visibility: visible;
+  }
+}
