@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Version>1.0.0.0</Version>
+    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+    <AssemblyName>TKAH.QuanLyChiTieu.Application</AssemblyName>
+    <PackageId>TKAH.QuanLyChiTieu.Application</PackageId>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <RootNamespace>TKAH.QuanLyChiTieu</RootNamespace>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TKAH.QuanLyChiTieu.Core\TKAH.QuanLyChiTieu.Core.csproj" />
+    <ProjectReference Include="..\TKAH.QuanLyChiTieu.EntityFrameworkCore\TKAH.QuanLyChiTieu.EntityFrameworkCore.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Abp.EntityFrameworkCore" Version="9.1.0" />
+    <PackageReference Include="Abp.AutoMapper" Version="9.1.0" />
+  </ItemGroup>
+</Project>

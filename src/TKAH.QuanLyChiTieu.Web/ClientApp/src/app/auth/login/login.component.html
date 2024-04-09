@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="header">
+    <div class=""></div>
+    <div class=""></div>
+  </div>
+
+  <div class="body" [formGroup]="form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Tên đăng nhập</mat-label>
+      <input matInput type="text" formControlName="username" />
+      @if (username.value != '') {
+      <button matSuffix mat-icon-button (click)="emptyControl('username')">
+        <mat-icon>close</mat-icon>
+      </button>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Mật khẩu</mat-label>
+      <input matInputm type="text" formControlName="password" />
+      @if (password.value != '') {
+      <button matSuffix mat-icon-button (click)="emptyControl('password')">
+        <mat-icon>close</mat-icon>
+      </button>
+      }
+    </mat-form-field>
+  </div>
+
+  <div class="footer">
+    <mat-label>Clearable input</mat-label>
+  <input matInput type="text" >
+  </div>
+</div>
