@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { NgModule } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +11,4 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'Money';
-  isPasswordVisible: boolean = false;
-  togglePasswordVisibility(): void {
-    this.isPasswordVisible = !this.isPasswordVisible;
-  }
 }
