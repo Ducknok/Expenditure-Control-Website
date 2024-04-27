@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 @Component({
@@ -11,4 +11,8 @@ import { NgModule } from '@angular/core';
 })
 export class AppComponent {
   title = 'Money';
+
+  constructor(private router: Router) {
+    // this.router.navigate(['pages/login']);
+  }
 }

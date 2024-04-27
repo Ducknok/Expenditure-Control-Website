@@ -22,4 +22,16 @@ export const pagesRoutes: Routes = [
     loadComponent: () =>
       import('./sending/sending.component').then((c) => c.SendingComponent),
   },
+  {
+    path: 'setting-tag',
+    loadComponent: () =>
+      import('./setting-tag/setting-tag.component').then(
+        (c) => c.SettingTagComponent
+      ),
+  },
+  {
+    path: 'register',
+    loadComponent: () =>
+      import('./register/register.component').then((c) => c.RegisterComponent),
+  },
 ];
