@@ -23,10 +23,10 @@ export const pagesRoutes: Routes = [
       import('./sending/sending.component').then((c) => c.SendingComponent),
   },
   {
-    path: 'setting-tag',
+    path: 'setting-category',
     loadComponent: () =>
-      import('./setting-tag/setting-tag.component').then(
-        (c) => c.SettingTagComponent
+      import('./setting-category/setting-category.component').then(
+        (c) => c.SettingCategoryComponent
       ),
   },
   {

@@ -1,5 +1,5 @@
 export interface Invoice {
-  invoiceId: number;
+  id: string;
   amount: number;
   issuaDate: Date;
   note: string;

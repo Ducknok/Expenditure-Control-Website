@@ -3,8 +3,8 @@ export interface Account {
   email: string;
 }
 
-export interface User {
-  userId: number;
+export interface Client {
+  id: string;
   name: string;
   budget: number;
 }
