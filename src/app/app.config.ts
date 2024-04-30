@@ -6,6 +6,7 @@ import {
   provideClientHydration,
   withHttpTransferCacheOptions,
 } from '@angular/platform-browser';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,6 +15,6 @@ export const appConfig: ApplicationConfig = {
       withHttpTransferCacheOptions({
         includePostRequests: true,
       })
-    ),
+    ), provideAnimationsAsync(),
   ],
 };

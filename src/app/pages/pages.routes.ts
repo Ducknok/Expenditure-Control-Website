@@ -34,4 +34,11 @@ export const pagesRoutes: Routes = [
     loadComponent: () =>
       import('./register/register.component').then((c) => c.RegisterComponent),
   },
+  {
+    path: 'profile',
+    loadComponent: () =>
+      import('./setting/profile/profile.component').then(
+        (c) => c.ProfileComponent
+      ),
+  },
 ];
