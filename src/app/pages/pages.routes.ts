@@ -41,4 +41,11 @@ export const pagesRoutes: Routes = [
         (c) => c.ProfileComponent
       ),
   },
+  {
+    path: 'password',
+    loadComponent: () =>
+      import('./setting/password/password.component').then(
+        (c) => c.PasswordComponent
+      ),
+  },
 ];
