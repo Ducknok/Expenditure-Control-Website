@@ -1,0 +1,54 @@
+:host ::ng-deep .cdk-virtual-scroll-viewport {
+  ::-webkit-scrollbar {
+    all: unset;
+  }
+}
+::ng-deep .ant-picker-body {
+  font-size: 22px;
+}
+
+::ng-deep thead .ng-star-inserted {
+  font-weight: bold;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+}
+
+::ng-deep date-table {
+  table {
+    thead tr {
+      border-bottom: 20px solid white;
+    }
+  }
+}
+
+::ng-deep .ant-picker-calendar-header {
+  justify-content: center;
+  .ant-select-selection-item {
+    font-size: 20px;
+  }
+  .ant-radio-button-wrapper {
+    span {
+      font-size: 20px;
+    }
+  }
+}
+
+.color-linear {
+  background-image: linear-gradient(
+    to top left,
+    rgba(164, 217, 108, 1),
+    rgba(0, 180, 103, 1)
+  );
+}
+
+::ng-deep
+  .ant-picker-calendar-full
+  .ant-picker-panel
+  .ant-picker-calendar-date-content {
+  height: 40px;
+}
+
+.custom-scrollbar {
+  max-height: 63vh;
+  overflow-y: auto;
+}

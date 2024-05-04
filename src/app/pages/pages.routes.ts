@@ -48,4 +48,9 @@ export const pagesRoutes: Routes = [
         (c) => c.PasswordComponent
       ),
   },
+  {
+    path: 'calendar',
+    loadComponent: () =>
+      import('./calendar/calendar.component').then((c) => c.CalendarComponent),
+  },
 ];
