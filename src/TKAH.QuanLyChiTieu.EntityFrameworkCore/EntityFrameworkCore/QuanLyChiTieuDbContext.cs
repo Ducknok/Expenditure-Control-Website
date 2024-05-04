@@ -11,6 +11,7 @@ namespace TKAH.QuanLyChiTieu.EntityFrameworkCore
         public virtual DbSet<Function> Functions { get; set; }
         public virtual DbSet<Invoice> Invoices { get; set; }
         public virtual DbSet<Tag> Tags { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
         public QuanLyChiTieuDbContext(DbContextOptions<QuanLyChiTieuDbContext> options) 
             : base(options)
         {

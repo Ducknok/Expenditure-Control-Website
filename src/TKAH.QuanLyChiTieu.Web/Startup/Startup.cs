@@ -44,6 +44,8 @@ namespace TKAH.QuanLyChiTieu.Web.Startup
                 options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
             });
 
+            services.AddAuthorization();
+            services.AddAuthentication().AddBearerToken();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(options =>
             {

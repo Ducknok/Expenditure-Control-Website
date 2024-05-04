@@ -6,7 +6,7 @@ namespace TKAH.QuanLyChiTieu.EntityFrameworkCore
 {
     public class Client : Entity<Guid>, IEntityDto<Guid>
     {
-        public string Username { get; set; }
+        public string Name { get; set; }
         public Guid UserId { get; set; }
         public decimal Budget { get; set; }
     }
