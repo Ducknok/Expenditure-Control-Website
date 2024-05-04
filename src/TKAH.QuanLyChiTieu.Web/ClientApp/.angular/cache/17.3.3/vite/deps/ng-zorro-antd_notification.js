@@ -1,15 +1,25 @@
 import {
-  DomSanitizer
-} from "./chunk-JGUVEICL.js";
-import {
-  HttpBackend,
-  HttpClient
-} from "./chunk-AMP7WUHJ.js";
+  InputBoolean,
+  canUseDom,
+  environment,
+  getEventPosition,
+  isTouchEvent,
+  toCssPixel,
+  updateCSS,
+  warn
+} from "./chunk-33JWCQY5.js";
 import {
   ComponentPortal,
   Overlay
-} from "./chunk-GB2YYY6H.js";
-import "./chunk-JH7E2O75.js";
+} from "./chunk-VQVIKXRR.js";
+import "./chunk-35E5R3QM.js";
+import {
+  DomSanitizer
+} from "./chunk-NTFBWZ2H.js";
+import {
+  HttpBackend,
+  HttpClient
+} from "./chunk-P575STFE.js";
 import {
   animate,
   query,
@@ -18,15 +28,14 @@ import {
   style,
   transition,
   trigger
-} from "./chunk-FMSJNSTN.js";
+} from "./chunk-23BA2G5A.js";
 import {
-  MediaMatcher,
-  coerceBooleanProperty,
-  coerceCssPixelValue
-} from "./chunk-KL7NTGFF.js";
+  MediaMatcher
+} from "./chunk-MYQAVPO7.js";
+import "./chunk-C5APLZPO.js";
 import {
   Platform
-} from "./chunk-NLJ5URYZ.js";
+} from "./chunk-26GMDCRW.js";
 import {
   DOCUMENT,
   NgClass,
@@ -35,7 +44,7 @@ import {
   NgSwitch,
   NgSwitchCase,
   NgTemplateOutlet
-} from "./chunk-ATNFBZZF.js";
+} from "./chunk-NJ5OQC42.js";
 import {
   CSP_NONCE,
   ChangeDetectionStrategy,
@@ -95,7 +104,7 @@ import {
   ɵɵsanitizeHtml,
   ɵɵstyleProp,
   ɵɵtemplate
-} from "./chunk-IZYYL2KL.js";
+} from "./chunk-RY6DCT44.js";
 import {
   Observable,
   Subject,
@@ -118,7 +127,7 @@ import {
 import {
   __spreadProps,
   __spreadValues
-} from "./chunk-LJ4VCL4A.js";
+} from "./chunk-J4B6MK7R.js";
 
 // node_modules/ng-zorro-antd/fesm2022/ng-zorro-antd-core-animation.mjs
 var _AnimationDuration = class _AnimationDuration {
@@ -1565,7 +1574,7 @@ var ANT_ICON_ANGULAR_CONSOLE_PREFIX = "[@ant-design/icons-angular]:";
 function error(message) {
   console.error(`${ANT_ICON_ANGULAR_CONSOLE_PREFIX} ${message}.`);
 }
-function warn(message) {
+function warn2(message) {
   if (isDevMode()) {
     console.warn(`${ANT_ICON_ANGULAR_CONSOLE_PREFIX} ${message}.`);
   }
@@ -1702,7 +1711,7 @@ var _IconService = class _IconService {
         this._jsonpIconLoad$.next(icon);
       };
     } else {
-      warn("You are already using jsonp loading.");
+      warn2("You are already using jsonp loading.");
     }
   }
   /**
@@ -1970,7 +1979,7 @@ var _IconDirective = class _IconDirective {
       }
       if (alreadyHasAThemeSuffix(name2)) {
         if (!!theme) {
-          warn(`'type' ${name2} already gets a theme inside so 'theme' ${theme} would be ignored`);
+          warn2(`'type' ${name2} already gets a theme inside so 'theme' ${theme} would be ignored`);
         }
         return name2;
       } else {
@@ -2056,137 +2065,6 @@ var IconModule = _IconModule;
     }]
   }], null, null);
 })();
-
-// node_modules/ng-zorro-antd/fesm2022/ng-zorro-antd-core-environments.mjs
-var environment = {
-  isTestMode: false
-};
-
-// node_modules/ng-zorro-antd/fesm2022/ng-zorro-antd-core-logger.mjs
-var record = {};
-var PREFIX = "[NG-ZORRO]:";
-function notRecorded(...args) {
-  const asRecord = args.reduce((acc, c) => acc + c.toString(), "");
-  if (record[asRecord]) {
-    return false;
-  } else {
-    record[asRecord] = true;
-    return true;
-  }
-}
-function consoleCommonBehavior(consoleFunc, ...args) {
-  if (environment.isTestMode || isDevMode() && notRecorded(...args)) {
-    consoleFunc(...args);
-  }
-}
-var warn2 = (...args) => consoleCommonBehavior((...arg) => console.warn(PREFIX, ...arg), ...args);
-
-// node_modules/ng-zorro-antd/fesm2022/ng-zorro-antd-core-util.mjs
-function toBoolean(value) {
-  return coerceBooleanProperty(value);
-}
-function toCssPixel(value) {
-  return coerceCssPixelValue(value);
-}
-function propDecoratorFactory(name2, fallback) {
-  function propDecorator(target, propName, originalDescriptor) {
-    const privatePropName = `$$__zorroPropDecorator__${propName}`;
-    if (Object.prototype.hasOwnProperty.call(target, privatePropName)) {
-      warn2(`The prop "${privatePropName}" is already exist, it will be overrided by ${name2} decorator.`);
-    }
-    Object.defineProperty(target, privatePropName, {
-      configurable: true,
-      writable: true
-    });
-    return {
-      get() {
-        return originalDescriptor && originalDescriptor.get ? originalDescriptor.get.bind(this)() : this[privatePropName];
-      },
-      set(value) {
-        if (originalDescriptor && originalDescriptor.set) {
-          originalDescriptor.set.bind(this)(fallback(value));
-        }
-        this[privatePropName] = fallback(value);
-      }
-    };
-  }
-  return propDecorator;
-}
-function InputBoolean() {
-  return propDecoratorFactory("InputBoolean", toBoolean);
-}
-function isTouchEvent(event) {
-  return event.type.startsWith("touch");
-}
-function getEventPosition(event) {
-  return isTouchEvent(event) ? event.touches[0] || event.changedTouches[0] : event;
-}
-var isBrowser = typeof window !== "undefined";
-var isFirefox = isBrowser && window.mozInnerScreenX != null;
-function canUseDom() {
-  return !!(typeof window !== "undefined" && window.document && window.document.createElement);
-}
-var MARK_KEY = `rc-util-key`;
-function getMark({ mark } = {}) {
-  if (mark) {
-    return mark.startsWith("data-") ? mark : `data-${mark}`;
-  }
-  return MARK_KEY;
-}
-function getContainer(option) {
-  if (option.attachTo) {
-    return option.attachTo;
-  }
-  const head = document.querySelector("head");
-  return head || document.body;
-}
-function injectCSS(css, options = {}) {
-  if (!canUseDom()) {
-    return null;
-  }
-  const styleNode = document.createElement("style");
-  if (options.cspNonce) {
-    styleNode.nonce = options.cspNonce;
-  }
-  styleNode.innerHTML = css;
-  const container = getContainer(options);
-  const { firstChild } = container;
-  if (options.prepend && container.prepend) {
-    container.prepend(styleNode);
-  } else if (options.prepend && firstChild) {
-    container.insertBefore(styleNode, firstChild);
-  } else {
-    container.appendChild(styleNode);
-  }
-  return styleNode;
-}
-var containerCache = /* @__PURE__ */ new Map();
-function findExistNode(key, option = {}) {
-  const container = getContainer(option);
-  return Array.from(containerCache.get(container)?.children || []).find((node) => node.tagName === "STYLE" && node.getAttribute(getMark(option)) === key);
-}
-function updateCSS(css, key, options = {}) {
-  const container = getContainer(options);
-  if (!containerCache.has(container)) {
-    const placeholderStyle = injectCSS("", options);
-    const { parentNode } = placeholderStyle;
-    containerCache.set(container, parentNode);
-    parentNode.removeChild(placeholderStyle);
-  }
-  const existNode = findExistNode(key, options);
-  if (existNode) {
-    if (options.cspNonce && existNode.nonce !== options.cspNonce) {
-      existNode.nonce = options.cspNonce;
-    }
-    if (existNode.innerHTML !== css) {
-      existNode.innerHTML = css;
-    }
-    return existNode;
-  }
-  const newNode = injectCSS(css, options);
-  newNode?.setAttribute(getMark(options), key);
-  return newNode;
-}
 
 // node_modules/@ant-design/icons-angular/fesm2022/ant-design-icons-angular-icons.mjs
 var BarsOutline = {
@@ -2589,7 +2467,7 @@ function registerTheme(globalPrefixCls, theme, cspNonce) {
       cspNonce
     });
   } else {
-    warn2(`NzConfigService: SSR do not support dynamic theme with css variables.`);
+    warn(`NzConfigService: SSR do not support dynamic theme with css variables.`);
   }
 }
 var defaultPrefixCls = "ant";
@@ -2725,7 +2603,7 @@ var _NzIconService = class _NzIconService extends IconService {
       if (defaultTwotoneColor.startsWith("#")) {
         primaryColor = defaultTwotoneColor;
       } else {
-        warn2("Twotone color must be a hex color!");
+        warn("Twotone color must be a hex color!");
       }
     }
     this.twoToneColor = {
@@ -2907,7 +2785,7 @@ var _NzIconDirective = class _NzIconDirective extends IconDirective {
             }
           });
         },
-        error: warn2
+        error: warn
       });
     });
   }
@@ -3496,8 +3374,8 @@ var NzDestroyService = _NzDestroyService;
   }], null, null);
 })();
 var _ImagePreloadService = class _ImagePreloadService {
-  constructor(document2, platform) {
-    this.document = document2;
+  constructor(document, platform) {
+    this.document = document;
     this.platform = platform;
     this.counter = /* @__PURE__ */ new Map();
     this.linkRefs = /* @__PURE__ */ new Map();
