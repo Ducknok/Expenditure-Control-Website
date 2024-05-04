@@ -1,0 +1,50 @@
+.color-linear {
+    background-image: linear-gradient(
+      to top left,
+      rgba(164, 217, 108, 1),
+      rgba(0, 180, 103, 1)
+    );
+  }
+  
+  .menu {
+    max-height: 100vh;
+    overflow-y: auto;
+    transform: translateX(-100%);
+    transition: all 0.2s linear;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    &.show {
+      transform: translateX(0);
+    }
+  }
+  
+
+  .is-active {
+    .change-fill-icon {
+      fill: #000;
+    }
+    .change-color-icon {
+      stroke: #ffffff;
+    }
+    .change-color-icon1 {
+      stroke: #000000;
+    }
+    .tab-name {
+      color: #000000 !important;
+      font-weight: 900;
+      font-size: 13pt;
+    }
+    .column-light {
+      position: absolute;
+      left: 0;
+      width: 5px;
+      height: 50%;
+      background: #000000;
+      border-radius: 50px;
+    }
+  }
+  .is-active-icon {
+    background: #4f8ce8;
+    box-shadow: 0px 8px 14px 0px rgba(105, 179, 210, 0.32);
+  }

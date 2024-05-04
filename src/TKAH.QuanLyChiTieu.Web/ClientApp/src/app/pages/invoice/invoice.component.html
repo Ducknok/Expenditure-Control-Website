@@ -1,0 +1,102 @@
+<div class="relative">
+  <form
+    action=""
+    class="flex flex-col justify-center items-center"
+    [formGroup]="form"
+  >
+    <!-- Button thu chi -->
+    <div class="mt-10">
+      @for (tag of listTag; track $index) {
+      <button
+        class="h-[53px] w-[250px] px-5 py-2 border rounded-lg color-linear text-white font-semibold text-[24px]"
+        [ngClass]="{
+          'hover:opacity-80 transition-all': tag.id === form.value.tagId
+        }"
+        (click)="onChangeType(tag.id)"
+      >
+        {{ tag.name }}
+      </button>
+      }
+      <!-- class="h-[53px] w-[250px] px-5 py-2 border rounded-lg color-linear text-white font-semibold opacity-50 text-[24px] hover:opacity-80 transition-all" -->
+    </div>
+
+    <!-- input nhập -->
+    <div class="mt-10 flex flex-col gap-5">
+      <!-- Ngày -->
+      <div class="border-input flex justify-between w-[1160px]">
+        <label for="date-input" class="text-[20px] font-semibold">Ngày</label>
+        <div
+          class="flex w-[900px] h-[50px] justify-between items-center px-5 rounded-lg bg-[#e6f6f7]"
+        >
+        <mat-form-field>
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="date">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        </div>
+      </div>
+      <!-- Ghi chú -->
+      <div class="border-input flex justify-between w-[1160px]">
+        <label for="note-input" class="text-[20px] font-semibold"
+          >Ghi chú</label
+        >
+        <div
+          class="flex w-[900px] h-[50px] justify-between items-center px-5 rounded-lg bg-[#e6f6f7]"
+        >
+          <input
+            formControlName="note"
+            type="text"
+            id="note-input"
+            placeholder="Nhập thông tin khoản chi"
+            class="w-[750px] bg-[#e6f6f7] border-none outline-none text-[26px]"
+          />
+        </div>
+      </div>
+      <!-- Tiền chi -->
+      <div class="border-input flex justify-between w-[1160px]">
+        <label for="data-input" class="text-[20px] font-semibold"
+          >Số tiền</label
+        >
+        <div
+          class="flex w-[900px] h-[50px] justify-between items-center px-5 rounded-lg bg-[#e6f6f7]"
+        >
+          <input
+            formControlName="money"
+            type="text"
+            id="data-input"
+            class="w-[750px] bg-[#e6f6f7] border-none outline-none text-[20px] font-semibold"
+            mask="separator.3" thousandSeparator="," 
+          />
+          <p class="text-[20px] font-semibold">VND</p>
+        </div>
+      </div>
+    </div>
+    <!-- Danh mục để chọn -->
+    <div class="w-[1160px] mt-10 font-semibold">
+      <p class="text-[20px] w-full m">Danh mục</p>
+      <!--List items: danh sách các mục chi tiêu -->
+      <div class="flex flex-wrap gap-[50px] p-10">
+        <!-- item -->
+        @for (category of listCategory; track $index) {
+        <div
+          class="h-[104px] w-[170px] border border-[#00A7B4] rounded-lg flex justify-center items-center cursor-pointer hover:bg-slate-300"
+          (click)="onSelectCategory(category.code)"
+        >
+          <div class="flex flex-col justify-center items-center">
+            <img [src]="category.icon" alt="#" class="h-[48px] w-[48px]" />
+            <p class="text-[18px]">{{ category.name }}</p>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+    <!-- nút submit -->
+    <button
+      (click)="onSubmit()"
+      class="h-[80px] w-[606px] px-5 py-2 border rounded-lg color-linear text-white font-semibold text-[20px] hover:opacity-90 transition-all"
+    >
+      Xác nhận
+    </button>
+  </form>
+</div>

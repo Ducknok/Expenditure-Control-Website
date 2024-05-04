@@ -1,33 +1,72 @@
-<div class="container">
-  <div class="header">
-    <div class=""></div>
-    <div class=""></div>
-  </div>
-
-  <div class="body" [formGroup]="form">
-    <mat-form-field class="example-full-width">
-      <mat-label>Tên đăng nhập</mat-label>
-      <input matInput type="text" formControlName="username" />
-      @if (username.value != '') {
-      <button matSuffix mat-icon-button (click)="emptyControl('username')">
-        <mat-icon>close</mat-icon>
-      </button>
-      }
-    </mat-form-field>
-
-    <mat-form-field class="example-full-width">
-      <mat-label>Mật khẩu</mat-label>
-      <input matInputm type="text" formControlName="password" />
-      @if (password.value != '') {
-      <button matSuffix mat-icon-button (click)="emptyControl('password')">
-        <mat-icon>close</mat-icon>
-      </button>
-      }
-    </mat-form-field>
-  </div>
-
-  <div class="footer">
-    <mat-label>Clearable input</mat-label>
-  <input matInput type="text" >
-  </div>
+<div class="h-screen flex justify-center items-center flex-col gap-5 p-5">
+  <img src="../assets/icon/avt.svg" alt="" />
+  <h1 class="text-[#00A7B4] font-semibold text-[50px]">ĐĂNG NHẬP</h1>
+  <form action="" [formGroup]="form">
+    <div class="">
+      <label
+        for="name"
+        class="text-[#00A7B4] text-[20px] font-bold cursor-pointer"
+      >
+        <p class="mb-2">Tên đăng nhập</p>
+      </label>
+      <input
+        formControlName="email"
+        id="name"
+        class="p-5 border-[2px] rounded-lg w-[800px] h-[80px] outline-none border-[#00A7B4]"
+        type="text"
+        placeholder="Vui lòng nhập tài khoản"
+      />
+    </div>
+    <div class="mt-5">
+      <label
+        for="password"
+        class="text-[#00A7B4] text-[20px] font-bold cursor-pointer"
+      >
+        <p class="mb-2">Mật khẩu</p>
+      </label>
+      <div class="relative">
+        <input
+          formControlName="password"
+          id="password"
+          class="p-5 border-[2px] rounded-lg w-[800px] h-[80px] outline-none border-[#00A7B4]"
+          [type]="isPasswordVisible ? 'text' : 'password'"
+          placeholder="Vui lòng nhập mật khẩu"
+        />
+        <div
+          class="p-2 absolute right-5 top-[50%] translate-y-[-50%] cursor-pointer"
+        >
+          <img
+            (click)="togglePasswordVisibility()"
+            [src]="
+              isPasswordVisible
+                ? '../assets/icon/openEye.svg'
+                : '../assets/icon/closeEye.svg'
+            "
+            alt="#"
+          />
+        </div>
+      </div>
+      <div class="w-full flex justify-end">
+        <p
+          class="text-[#00A7B4] text-[18px] italic cursor-pointer hover:opacity-90 transition-all"
+        >
+          Quên mật khẩu?
+        </p>
+      </div>
+    </div>
+    <div class="flex flex-col items-center mt-10">
+      <div
+      (click)="login()"
+        class="w-[343px] h-[80px] p-3 rounded-lg flex justify-center items-center cursor-pointer color-linear hover:opacity-90 transition-all"
+      >
+        <p class="text-[24px] font-semibold text-white">Đăng nhập</p>
+      </div>
+      <a
+        [routerLink]="['/auth/register']"
+        routerLinkActive="router-link-active"
+        class="text-[18px] text-[#00A7B4] font-semibold italic hover:opacity-90 transition-all"
+        >Bạn chưa có tài khoản?</a
+      >
+    </div>
+  </form>
 </div>

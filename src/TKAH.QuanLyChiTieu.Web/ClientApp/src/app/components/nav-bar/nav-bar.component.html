@@ -1,0 +1,49 @@
+<div class="w-full h-full z-10 min-h-dvh">
+  <!-- menu -->
+  <div class="menu h-screen show w-[280px] bg-white shadow-lg h-screen">
+    <!-- avt -->
+    <div class="flex flex-col items-center w-full mt-10">
+      <img
+        src="../assets/img/avt.jpg"
+        alt="#"
+        class="rounded-full h-[167px] w-[167px] shadow-lg"
+      />
+      <p class="text-[20px] text-[#00A7B4] font-semibold mt-5">XIN CHÀO</p>
+      <p class="text-[20px] text-[#00A7B4] font-semibold">Vũ Hồng Sơn</p>
+    </div>
+
+    <!-- select menu -->
+    <ul class="mt-10 flex flex-col">
+      @for (router of routers; track router) {
+        <li
+          class="cursor-pointer py-3 hover:bg-slate-200 pl-10 flex items-center gap-5"
+          [routerLink]="router.router"
+          [routerLinkActive]="['is-active']"
+        >
+          <img class="h-5" [src]="router.icon" alt="#" />
+          <p class="text-[20px] text-[#00A7B4] font-semibold">{{router.name}}</p>
+        </li>
+      }
+
+      <li class="py-3 pl-10 flex items-center gap-5">
+        <img class="h-5" src="../assets/icon/calculator.svg" alt="#" />
+        <p class="text-[20px] text-[#00A7B4] font-semibold">Tính thu nhập</p>
+        <div class="w-[72px] h-[20px] bg-[#D9D9D9] rounded-lg text-center">
+          <button class="w-[36px] h-[20px] bg-[#00A7B4] text-white rounded-lg">
+            on
+          </button>
+          <button class="w-[36px] h-[20px] text-white">off</button>
+        </div>
+      </li>
+    </ul>
+    <!-- Đăng xuất -->
+    <div class="flex justify-center my-10">
+      <button
+        (click)="onLogout()"
+        class="h-[36px] w-[150px] px-3 py-2 border rounded-lg color-linear text-white font-semibold text-[20px] hover:opacity-90 transition-all"
+      >
+        Đăng xuất
+      </button>
+    </div>
+  </div>
+</div>

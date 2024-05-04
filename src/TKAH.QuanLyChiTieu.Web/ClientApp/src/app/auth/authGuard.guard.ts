@@ -21,14 +21,14 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Promise<boolean> {
     let isActivated = true;
-    await this.authService.getUser().then((user) => {
-      if (!user) {
-        isActivated = false;
-        this.router.navigate(['/auth/login']);
-      } else {
-        this.userManager.setUser(user.profile);
-      }
-    });
+    // await this.authService.getUser().then((user) => {
+    //   if (!user) {
+    //     isActivated = false;
+    //     this.router.navigate(['/auth/login']);
+    //   } else {
+    //     this.userManager.setUser(user.profile);
+    //   }
+    // });
     return isActivated;
   }
 }

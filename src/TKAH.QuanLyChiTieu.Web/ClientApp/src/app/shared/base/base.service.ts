@@ -9,7 +9,7 @@ export abstract class BaseService {
   protected baseUrl: string;
 
   constructor(protected http: HttpClient) {
-    this.baseUrl = '//';
+    this.baseUrl = '/api/services/app';
   }
   private processUrl<T>(url: string) {
     url = url.replace('//', '/');

@@ -1,0 +1,121 @@
+<div class="h-screen flex justify-center items-center gap-[200px]">
+  <div class="flex flex-col items-center">
+    <img src="../assets/icon/avt.svg" alt="" />
+    <h1 class="text-[#00A7B4] font-semibold text-[50px]">ĐĂNG KÝ</h1>
+  </div>
+  <form action="" class="flex flex-col gap-4">
+    <div class="">
+      <label
+        for="fullname"
+        class="text-[#00A7B4] text-[20px] font-bold cursor-pointer"
+      >
+        <p class="mb-2">Họ và tên</p>
+      </label>
+      <input
+        formControlName="name"
+        id="fullname"
+        class="p-5 border-[2px] rounded-lg w-[800px] h-[80px] outline-none border-[#00A7B4]"
+        type="text"
+        placeholder="Vui lòng nhập họ và tên"
+      />
+    </div>
+    <div class="">
+      <label
+        for="email"
+        class="text-[#00A7B4] text-[20px] font-bold cursor-pointer"
+      >
+        <p class="mb-2">Email</p>
+      </label>
+      <input
+        formControlName="email"
+        id="email"
+        class="p-5 border-[2px] rounded-lg w-[800px] h-[80px] outline-none border-[#00A7B4]"
+        type="email"
+        placeholder="Vui lòng nhập email"
+      />
+    </div>
+    <div class="">
+      <label
+        for="password"
+        class="text-[#00A7B4] text-[20px] font-bold cursor-pointer"
+      >
+        <p class="mb-2">Mật khẩu</p>
+      </label>
+      <div class="relative">
+        <input
+          formControlName="password"
+          id="password"
+          class="p-5 border-[2px] rounded-lg w-[800px] h-[80px] outline-none border-[#00A7B4]"
+          [type]="isPasswordVisible ? 'text' : 'password'"
+          placeholder="Vui lòng nhập mật khẩu"
+        />
+        <div
+          class="p-2 absolute right-5 top-[50%] translate-y-[-50%] cursor-pointer"
+        >
+          <img
+            (click)="togglePasswordVisibility()"
+            [src]="
+              isPasswordVisible
+                ? '../assets/icon/openEye.svg'
+                : '../assets/icon/closeEye.svg'
+            "
+            alt="#"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="">
+      <label
+        for="password1"
+        class="text-[#00A7B4] text-[20px] font-bold cursor-pointer"
+      >
+        <p class="mb-2">Nhập lại mật khẩu</p>
+      </label>
+      <div class="relative">
+        <input
+          formControlName="comfirmPassword"
+          id="password1"
+          class="p-5 border-[2px] rounded-lg w-[800px] h-[80px] outline-none border-[#00A7B4]"
+          [type]="isPasswordVisible ? 'text' : 'password'"
+          placeholder="Vui lòng nhập lại mật khẩu"
+        />
+        <div
+          class="p-2 absolute right-5 top-[50%] translate-y-[-50%] cursor-pointer"
+        >
+          <img
+            (click)="togglePasswordVisibility()"
+            [src]="
+              isPasswordVisible
+                ? '../assets/icon/openEye.svg'
+                : '../assets/icon/closeEye.svg'
+            "
+            alt="#"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-between">
+      <div class="flex gap-3">
+        <input type="checkbox" name="" id="check_box" />
+        <span class="checkbox"></span>
+        <label for="check_box" class="text-[#C4C4C4] label_check"
+          >Tôi đồng ý với những điều khoản và điều kiện</label
+        >
+      </div>
+      <a
+        [routerLink]="['/auth/login']"
+        routerLinkActive="router-link-active"
+        class="text-[18px] text-[#00A7B4] font-semibold italic hover:opacity-90 transition-all"
+        >Bạn đã có tài khoản?</a
+      >
+    </div>
+    <div class="flex justify-center">
+      <div
+        (click)="register()"
+        class="w-[343px] h-[80px] p-3 rounded-lg flex justify-center items-center cursor-pointer color-linear hover:opacity-90 transition-all"
+      >
+        <p class="text-[24px] font-semibold text-white">Đăng ký</p>
+      </div>
+    </div>
+  </form>
+</div>

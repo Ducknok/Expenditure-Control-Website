@@ -1,72 +1,17 @@
-<div class="mobile">
-    <mat-drawer-container
-      style="height: 100%; position: relative"
-      [hasBackdrop]="hasBackdrop"
-    >
-      <mat-drawer #drawer [mode]="mode" [opened]="openNav" class="col-2">
-        <app-nav-bar style="width: 100%"></app-nav-bar>
-      </mat-drawer>
-  
-      <mat-drawer-content
-        class="col-6 my-background-50"
-        style="display: flex; flex-direction: column"
-      >
-        <div style="width: 100%; height: -webkit-fill-available">
-          <mat-toolbar class="toolbar">
-            <ng-container>
-              <button
-                mat-icon-button
-                aria-label="Example icon-button with menu icon"
-                (click)="drawer.toggle()"
-              >
-                <mat-icon class="example-icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18pt"
-                    height="18pt"
-                    viewBox="0 0 18 18"
-                    version="1.1"
-                  >
-                    <path
-                      style="
-                        stroke: none;
-                        fill-rule: nonzero;
-                        fill: rgb(0%, 0%, 0%);
-                        fill-opacity: 1;
-                      "
-                      d="M 1.800781 2.878906 C 1.539062 2.875 1.296875 3.011719 1.167969 3.238281 C 1.035156 3.460938 1.035156 3.738281 1.167969 3.964844 C 1.296875 4.1875 1.539062 4.324219 1.800781 4.320312 L 16.199219 4.320312 C 16.460938 4.324219 16.703125 4.1875 16.832031 3.964844 C 16.964844 3.738281 16.964844 3.460938 16.832031 3.238281 C 16.703125 3.011719 16.460938 2.875 16.199219 2.878906 Z M 1.800781 8.28125 C 1.539062 8.277344 1.296875 8.414062 1.167969 8.636719 C 1.035156 8.859375 1.035156 9.140625 1.167969 9.363281 C 1.296875 9.585938 1.539062 9.722656 1.800781 9.71875 L 16.199219 9.71875 C 16.460938 9.722656 16.703125 9.585938 16.832031 9.363281 C 16.964844 9.140625 16.964844 8.859375 16.832031 8.636719 C 16.703125 8.414062 16.460938 8.277344 16.199219 8.28125 Z M 1.800781 13.679688 C 1.539062 13.675781 1.296875 13.8125 1.167969 14.035156 C 1.035156 14.261719 1.035156 14.539062 1.167969 14.761719 C 1.296875 14.988281 1.539062 15.125 1.800781 15.121094 L 16.199219 15.121094 C 16.460938 15.125 16.703125 14.988281 16.832031 14.761719 C 16.964844 14.539062 16.964844 14.261719 16.832031 14.035156 C 16.703125 13.8125 16.460938 13.675781 16.199219 13.679688 Z M 1.800781 13.679688 "
-                    />
-                  </svg>
-                </mat-icon>
-              </button>
-            </ng-container>
-            <div style="height: max-content; margin-left: 10px">
-              <div
-                class="nameRes nocopy"
-                [ngStyle]="{ 'font-size.px': fontsize }"
-                (click)="home()"
-              >
-                {{ nameRestaraunt }}
-              </div>
-              <div class="addressRes">
-                {{ addressRestaraunt }}
-              </div>
-            </div>
-            <div style="height: 48px; margin-left: 10px"></div>
-            <span class="example-spacer"></span>
-            <!-- <button
-              mat-icon-button
-              aria-label="Example icon-button with heart icon"
-            >
-              <mat-icon class="example-icon favorite-icon">favorite</mat-icon>
-            </button> -->
-          </mat-toolbar>
-  
-          <div>
-            <router-outlet></router-outlet>
-          </div>
-        </div>
-      </mat-drawer-content>
-    </mat-drawer-container>
-  </div>
-  
+<mat-drawer-container class="min-h-dvh">
+  <mat-drawer #drawer mode="side">
+    <app-nav-bar></app-nav-bar>
+  </mat-drawer>
+  <mat-drawer-content>
+    <button mat-raised-button (click)="drawer.toggle()">
+      <img
+        (click)="drawer.toggle()"
+        src="../../assets/icon/menu.svg"
+        alt="#"
+        class="h-5 cursor-pointer hover:opacity-60 transition-all"
+      />
+    </button>
+
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
