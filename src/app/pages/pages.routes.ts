@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { IncomeComponent } from './income/income.component';
 
 export const pagesRoutes: Routes = [
   {
@@ -52,5 +51,12 @@ export const pagesRoutes: Routes = [
     path: 'calendar',
     loadComponent: () =>
       import('./calendar/calendar.component').then((c) => c.CalendarComponent),
+  },
+  {
+    path: 'dashboard',
+    loadComponent: () =>
+      import('./dashboard/dashboard.component').then(
+        (c) => c.DashboardComponent
+      ),
   },
 ];
