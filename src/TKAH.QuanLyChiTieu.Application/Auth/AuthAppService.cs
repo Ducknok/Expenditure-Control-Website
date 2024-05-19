@@ -28,13 +28,21 @@ namespace QuanLyThuChi.Application
         {
             if(request != null) 
             {
-                if(String.IsNullOrEmpty(request.Name) && String.IsNullOrEmpty(request.Email))
+                if(!String.IsNullOrEmpty(request.Name) && !String.IsNullOrEmpty(request.Email))
                 {
                     if(request.Password == request.ComfirmPassword)
                     {
+                        var acccount = new Account()
+                        {
+                            Id = new Guid(),
+                            Email = request.Email,
+                            Password = request.Password,
+                        };
+                        await _repository.InsertAsync(acccount);
                         var client = new Client()
                         {
                             Id = Guid.NewGuid(),
+                            UserId = acccount.Id,
                             Name = request.Name,
                             Budget = 0,
                         };

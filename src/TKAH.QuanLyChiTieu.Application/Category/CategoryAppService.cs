@@ -3,6 +3,10 @@ using Abp.Domain.Repositories;
 using Abp.Runtime.Session;
 using TKAH.QuanLyChiTieu.EntityFrameworkCore;
 using System;
+using System.Threading.Tasks;
+using Abp.Application.Services.Dto;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace QuanLyThuChi.Application
 {

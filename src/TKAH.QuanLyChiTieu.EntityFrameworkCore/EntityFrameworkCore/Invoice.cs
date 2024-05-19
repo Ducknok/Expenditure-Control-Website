@@ -6,8 +6,8 @@ namespace TKAH.QuanLyChiTieu.EntityFrameworkCore
 {
     public class Invoice : Entity<Guid>, IEntityDto<Guid>
     {
-        public Guid UserId { get; set; }
-        public Guid CategoryId { get; set; }
+        public Guid ClientId { get; set; }
+        public Guid TagId { get; set; }
         public string Code { get; set; }
         public DateTime IssueDate { get; set; }
         public string Note { get; set; }
