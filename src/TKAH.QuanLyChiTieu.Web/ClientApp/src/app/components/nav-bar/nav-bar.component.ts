@@ -3,6 +3,9 @@ import { MatIconModule } from "@angular/material/icon";
 import { Router, RouterModule } from "@angular/router";
 import { AuthService } from "src/app/shared/services/auth/auth.service";
 import { CookieService } from "src/app/shared/services/cookie.service";
+import { FunctionsService } from "../../shared/services/functions/functions.service";
+import { v4 as uuid } from "uuid";
+
 @Component({
   selector: "app-nav-bar",
   standalone: true,
@@ -13,31 +16,20 @@ import { CookieService } from "src/app/shared/services/cookie.service";
 export class NavBarComponent {
   innerWidth: number = window.innerWidth;
   user: any;
-  constructor(private router: Router, private authService: AuthService, private cookieService: CookieService) {}
+  routers: Nativegate[] = [];
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private cookieService: CookieService,
+    private functionsService: FunctionsService
+  ) {}
 
-  ngOnInit() {}
-  routers: Nativegate[] = [
-    {
-      name: "Nhập vào",
-      router: "invoice",
-      icon: "../assets/icon/pen.svg",
-    },
-    {
-      name: "Lịch",
-      router: "invoice-list",
-      icon: "../assets/icon/calendar.svg",
-    },
-    {
-      name: "Báo cáo",
-      router: "dashboard",
-      icon: "../assets/icon/trello.svg",
-    },
-    {
-      name: "Cài đặt cơ bản",
-      router: "profile",
-      icon: "../assets/icon/setting.svg",
-    }
-  ];
+  ngOnInit() {
+    this.functionsService.getAll().subscribe((data: any) => {
+      this.routers = [...data.result.items];
+    });
+  }
+
   refresh(): void {
     this.router.navigate([`/order`]);
   }
@@ -50,12 +42,13 @@ export class NavBarComponent {
   onResize(event) {
     this.innerWidth = window.innerWidth;
   }
-  onLogout(){
-    this.cookieService.deleteCookie("token")
+  onLogout() {
+    this.cookieService.deleteCookie("token");
+    this.router.navigate(["auth/login"]);
   }
 }
 class Nativegate {
-  router: string | undefined;
-  name: string | undefined;
+  url: string | undefined;
+  title: string | undefined;
   icon: string | any;
 }

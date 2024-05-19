@@ -12,53 +12,66 @@ import { debounceTime, filter } from "rxjs";
 import { CategoryService } from "src/app/shared/services/category/category.service";
 import { NotifyService } from "src/app/shared/services/notify.service";
 import { TagService } from "src/app/shared/services/tag/tag.service";
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {provideNativeDateAdapter} from '@angular/material/core';
-
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatInputModule } from "@angular/material/input";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { provideNativeDateAdapter } from "@angular/material/core";
+import { v4 as uuid } from "uuid";
+import { Tag } from "../../shared/models/tag";
+import { Category } from "../../shared/models/category";
+import { MatIconModule } from "@angular/material/icon";
+import { InvoiceService } from "../../shared/services/invoice/invoice.service";
 @Component({
   selector: "app-invoice",
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgxMaskDirective, MatFormFieldModule, MatInputModule, MatDatepickerModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxMaskDirective,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatIconModule,
+  ],
   providers: [provideNgxMask(), provideNativeDateAdapter()],
   templateUrl: "./invoice.component.html",
   styleUrl: "./invoice.component.scss",
 })
 export class InvoiceComponent implements OnInit {
   form: FormGroup;
-  listCategory: any[] = [];
-  listTag: any[] = [];
+  listCategory: Category[] = [];
+  listTag: Tag[] = [];
+  cateId = "";
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
     private categoryService: CategoryService,
     private notifyService: NotifyService,
-    private tagService: TagService
+    private tagService: TagService,
+    private invoiceService: InvoiceService
   ) {}
 
   ngOnInit(): void {
     this.form = this.createForm();
-    console.log(this.form.value)
-    // this.tagService.getAll().subscribe((data: any) => {
-    //   this.listTag = [...data];
-    // });
-    // this.categoryService
-    //   .getAll()
-    //   .pipe(filter((x) => x.tagId == this.form.value.tagId))
-    //   .subscribe((data: any) => {
-    //     this.listCategory = [...data];
-    //   });
+    this.tagService.getAll().subscribe((data: any) => {
+      this.listTag = [...data.result.items];
+    });
+    this.categoryService.getAll().subscribe((data: any) => {
+      this.listCategory = [...data.result.items];
+      this.cateId = this.listCategory[0].id;
+    });
   }
 
   createForm(): FormGroup {
     let form = this.formBuilder.group({
-      id: [""],
-      date: [formatDate(new Date(),'yyyy-MM-dd','en')],
+      id: [uuid()],
+      issueDate: [formatDate(new Date(), "yyyy-MM-dd", "en")],
       note: [""],
-      money: [0],
+      amount: [0],
       code: [""],
-      tagId: ["0"],
+      tagId: [""],
+      clientId: ["A75F7C79-1B1B-4078-AE13-3DD6E0770F6D"],
     });
     return form;
   }
@@ -71,13 +84,33 @@ export class InvoiceComponent implements OnInit {
   }
 
   onChangeType(id: string) {
-    this.form.controls["tagId"].setValue(id);
+    this.cateId = id;
   }
 
   onSelectCategory(code: string) {
     this.form.controls["code"].setValue(code);
   }
-  onSubmit(){
-    this.notifyService.success("ok")
+  onSubmit() {
+    this.invoiceService.createItem(this.form.value).subscribe((data) => {
+      if (data.success) {
+        this.notifyService.success("ok");
+      }
+    });
+  }
+
+  onCreate() {
+    this.categoryService
+      .createItem({
+        id: uuid(),
+        code: "Income",
+        name: "Phiếu chi",
+      })
+      .subscribe((data) => {
+        console.log(data);
+      });
+  }
+
+  onSelectTag(tag: Tag) {
+    this.form.get("tagId")?.setValue(tag.id);
   }
 }

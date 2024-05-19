@@ -1,4 +1,5 @@
 <div class="relative">
+  <!-- <button (click)="onCreate()">Create Category</button> -->
   <form
     action=""
     class="flex flex-col justify-center items-center"
@@ -6,15 +7,15 @@
   >
     <!-- Button thu chi -->
     <div class="mt-10">
-      @for (tag of listTag; track $index) {
+      @for (category of listCategory; track $index) {
       <button
         class="h-[53px] w-[250px] px-5 py-2 border rounded-lg color-linear text-white font-semibold text-[24px]"
         [ngClass]="{
-          'hover:opacity-80 transition-all': tag.id === form.value.tagId
+          'opacity-50 transition-all': category.id !== cateId
         }"
-        (click)="onChangeType(tag.id)"
+        (click)="onChangeType(category.id)"
       >
-        {{ tag.name }}
+        {{ category.name }}
       </button>
       }
       <!-- class="h-[53px] w-[250px] px-5 py-2 border rounded-lg color-linear text-white font-semibold opacity-50 text-[24px] hover:opacity-80 transition-all" -->
@@ -26,14 +27,21 @@
       <div class="border-input flex justify-between w-[1160px]">
         <label for="date-input" class="text-[20px] font-semibold">Ngày</label>
         <div
-          class="flex w-[900px] h-[50px] justify-between items-center px-5 rounded-lg bg-[#e6f6f7]"
+          class="flex w-[900px] h-[50px] justify-center items-center rounded-lg"
         >
-        <mat-form-field>
-          <mat-label>Choose a date</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="date">
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
+          <mat-form-field class="w-full">
+            <!-- <mat-label>Choose a date</mat-label> -->
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="issueDate"
+            />
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
         </div>
       </div>
       <!-- Ghi chú -->
@@ -42,14 +50,14 @@
           >Ghi chú</label
         >
         <div
-          class="flex w-[900px] h-[50px] justify-between items-center px-5 rounded-lg bg-[#e6f6f7]"
+          class="flex w-[900px] h-[50px] justify-between items-center rounded-lg bg-[#e6f6f7]"
         >
           <input
             formControlName="note"
             type="text"
             id="note-input"
             placeholder="Nhập thông tin khoản chi"
-            class="w-[750px] bg-[#e6f6f7] border-none outline-none text-[26px]"
+            class="w-[750px] h-full bg-[#e6f6f7] border-none outline-none text-[16px] p-3 rounded-lg"
           />
         </div>
       </div>
@@ -59,14 +67,15 @@
           >Số tiền</label
         >
         <div
-          class="flex w-[900px] h-[50px] justify-between items-center px-5 rounded-lg bg-[#e6f6f7]"
+          class="flex w-[900px] h-[50px] justify-between items-center pr-5 rounded-lg bg-[#e6f6f7]"
         >
           <input
-            formControlName="money"
+            formControlName="amount"
             type="text"
             id="data-input"
-            class="w-[750px] bg-[#e6f6f7] border-none outline-none text-[20px] font-semibold"
-            mask="separator.3" thousandSeparator="," 
+            class="w-[750px] bg-[#e6f6f7] border-none outline-none text-[20px] font-semibold p-3 rounded-lg"
+            mask="separator.3"
+            thousandSeparator=","
           />
           <p class="text-[20px] font-semibold">VND</p>
         </div>
@@ -76,18 +85,33 @@
     <div class="w-[1160px] mt-10 font-semibold">
       <p class="text-[20px] w-full m">Danh mục</p>
       <!--List items: danh sách các mục chi tiêu -->
-      <div class="flex flex-wrap gap-[50px] p-10">
-        <!-- item -->
-        @for (category of listCategory; track $index) {
+      <!-- start list items tag -->
+      <div class="list-items w-full pl-20 pr-5 mt-10 flex gap-y-5">
+        @for (item of listTag; track item.name ) { @if (item.categoryId ===
+        cateId) {
         <div
-          class="h-[104px] w-[170px] border border-[#00A7B4] rounded-lg flex justify-center items-center cursor-pointer hover:bg-slate-300"
-          (click)="onSelectCategory(category.code)"
+          class="h-[104px] w-[200px] flex justify-between items-center cursor-pointer hover:bg-slate-300 p-3 rounded-lg transition-all"
+          (click)="onSelectTag(item)"
         >
-          <div class="flex flex-col justify-center items-center">
-            <img [src]="category.icon" alt="#" class="h-[48px] w-[48px]" />
-            <p class="text-[18px]">{{ category.name }}</p>
+          <div class="flex justify-center items-center">
+            <!-- <img
+            src="{{ item.icon }}"
+            alt="#"
+            class="h-[48px] w-[48px]"
+            [style.background-color]="item.color"
+          /> -->
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Example home icon"
+              [ngStyle]="{ color: item.color }"
+              [fontIcon]="item.icon"
+            ></mat-icon>
+            <p class="ml-10 font-medium text-2xl">{{ item.name }}</p>
           </div>
         </div>
+
+        } } @empty {
+        <li>There are no items.</li>
         }
       </div>
     </div>

@@ -1,15 +1,22 @@
 import { HttpClientModule } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormBuilder, FormControl } from "@angular/forms";
-import { RouterLink } from "@angular/router";
+import {
+  FormGroup,
+  FormBuilder,
+  FormControl,
+  FormsModule,
+  ReactiveFormsModule,
+} from "@angular/forms";
+import { Router, RouterLink } from "@angular/router";
 import { AuthService } from "src/app/shared/services/auth/auth.service";
 import { CookieService } from "src/app/shared/services/cookie.service";
 import { AuthManager } from "src/app/shared/services/managers/auth-manager.service";
+import { NotifyService } from "../../shared/services/notify.service";
 
 @Component({
   selector: "app-register",
   standalone: true,
-  imports: [RouterLink, HttpClientModule],
+  imports: [RouterLink, HttpClientModule, FormsModule, ReactiveFormsModule],
   templateUrl: "./register.component.html",
   styleUrl: "./register.component.scss",
 })
@@ -22,7 +29,9 @@ export class RegisterComponent implements OnInit {
     private authManager: AuthManager,
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private router: Router,
+    private notifyService: NotifyService
   ) {}
 
   ngOnInit(): void {
@@ -45,8 +54,13 @@ export class RegisterComponent implements OnInit {
     return this.form.controls["password"] as FormControl;
   }
   register() {
-    this.authService.register(this.form.value).subscribe((token: string) => {
-      this.cookieService.setCookie("token", token);
+    this.authService.register(this.form.value).subscribe((token: any) => {
+      if (token.result != "") {
+        this.cookieService.setCookie("token", token.result);
+        this.router.navigate(["pages/invoice"]);
+      } else {
+        this.notifyService.error("Create error");
+      }
     });
   }
 

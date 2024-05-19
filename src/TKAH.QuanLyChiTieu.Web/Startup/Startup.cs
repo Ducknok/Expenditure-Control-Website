@@ -43,7 +43,11 @@ namespace TKAH.QuanLyChiTieu.Web.Startup
             {
                 options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
             });
-
+            services.AddAntiforgery(options =>
+            {
+                options.HeaderName = "X-XSRF-TOKEN";
+                options.SuppressXFrameOptionsHeader = false;
+            });
             services.AddAuthorization();
             services.AddAuthentication().AddBearerToken();
             services.AddEndpointsApiExplorer();
@@ -82,7 +86,7 @@ namespace TKAH.QuanLyChiTieu.Web.Startup
             {
                 app.UseExceptionHandler("/Error");
             }
-
+            
             app.UseStaticFiles();
             app.UseRouting();
             app.UseCors("CorsPolicy");

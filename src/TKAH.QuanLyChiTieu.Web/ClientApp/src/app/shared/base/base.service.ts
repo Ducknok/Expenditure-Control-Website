@@ -1,24 +1,24 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable, of } from "rxjs";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export abstract class BaseService {
   protected baseUrl: string;
 
   constructor(protected http: HttpClient) {
-    this.baseUrl = '/api/services/app';
+    this.baseUrl = "/api/services/app/";
   }
   private processUrl<T>(url: string) {
-    url = url.replace('//', '/');
-    if (url[0] === '/') {
+    url = url.replace("//", "/");
+    if (url[0] === "/") {
       url = url.substring(1);
     }
     let endpoint = this.baseUrl + url;
-    endpoint = endpoint.replace(/[?&]$/, '');
-    if (endpoint[0] === '/') {
+    endpoint = endpoint.replace(/[?&]$/, "");
+    if (endpoint[0] === "/") {
       endpoint = endpoint.substring(1);
     }
     return endpoint;

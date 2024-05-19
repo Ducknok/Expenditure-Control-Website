@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
-import { BaseService } from '../../base/base.service';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { BaseService } from "../../base/base.service";
+import { Observable } from "rxjs";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class TagService extends BaseService {
-  protected url: string = 'api/services/app/Tag';
+  protected url: string = "/Tag";
   getAll(): Observable<any> {
     return this.get(`${this.url}/GetAll?MaxResultCount=99999`);
   }

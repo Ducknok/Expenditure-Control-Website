@@ -17,7 +17,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Update="log4net.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
     <None Update="wwwroot\**\*;Views\**\*">
