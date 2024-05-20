@@ -1,0 +1,96 @@
+<div class="w-[100%] flex justify-center p-10 gap-20">
+  <!-- dashboard -->
+  <div class="flex flex-col justify-center items-center gap-10 w-[50%]">
+    <div class="mt-10">
+      <button
+        class="h-[53px] w-[250px] px-5 py-2 border rounded-lg color-linear text-white font-semibold text-[24px]"
+      >
+        Tiền chi
+      </button>
+      <button
+        class="h-[53px] w-[250px] px-5 py-2 border rounded-lg color-linear text-white font-semibold opacity-50 text-[24px] hover:opacity-80 transition-all"
+      >
+        Tiền thu
+      </button>
+    </div>
+    <canvasjs-chart
+      [options]="chartRound"
+      [styles]="{ width: '700px', height: '360px' }"
+    ></canvasjs-chart>
+    <div class="flex gap-20">
+      <div
+        class="flex flex-col items-center justify-center p-5 color-linear text-white text-[16px] rounded-2xl"
+      >
+        <p>THU NHẬP</p>
+        <p>0 VND</p>
+      </div>
+      <div
+        class="flex flex-col items-center justify-center p-5 color-linear text-white text-[16px] rounded-2xl"
+      >
+        <p>CHI TIÊU</p>
+        <p>0 VND</p>
+      </div>
+      <div
+        class="flex flex-col items-center justify-center p-5 color-linear text-white text-[16px] rounded-2xl"
+      >
+        <p>TỔNG</p>
+        <p>0 VND</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- thong ke chi tiet -->
+  <div class="flex items-center">
+    <div class="border-[2px] border-[#a4d96c] right-0 h-[90%]"></div>
+  </div>
+  <div class="w-[600px] h-full flex flex-col flex-1 gap-10 px-5 py-5">
+    <div class="">
+      <div
+        class="mb-5 flex justify-between items-center h-16 color-linear px-7 rounded-lg text-white text-[20px]"
+      >
+        <p>
+          27/09/2024
+          <!-- <mat-form-field>
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+          <input
+            matStartDate
+            formControlName="start"
+            placeholder="Start date"
+          />
+          <input matEndDate formControlName="end" placeholder="End date" />
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+
+        @if (range.controls.start.hasError('matStartDateInvalid')) {
+        <mat-error>Invalid start date</mat-error>
+        } @if (range.controls.end.hasError('matEndDateInvalid')) {
+        <mat-error>Invalid end date</mat-error>
+        }
+      </mat-form-field> -->
+        </p>
+        <p>126,000 VND</p>
+      </div>
+      <div class="list-items w-full flex flex-col gap-y-5 custom-scrollbar">
+        @for (item of listCategory; track item.name ) {
+        <div
+          class="flex justify-between items-center cursor-pointer hover:bg-slate-300 p-3 rounded-lg transition-all"
+        >
+          <div class="flex justify-center items-center">
+            <img src="{{ item.icon }}" alt="#" class="h-[48px] w-[48px]" />
+            <p class="ml-10 font-medium text-2xl">{{ item.name }}</p>
+          </div>
+          <img src="../assets/icon/rightTag.svg" alt="#" class="h-[32px]" />
+        </div>
+        } @empty {
+        <li>There are no items.</li>
+        }
+      </div>
+    </div>
+  </div>
+</div>
