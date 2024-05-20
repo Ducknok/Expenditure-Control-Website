@@ -6,12 +6,12 @@ export const routes: Routes = [
   {
     path: 'pages',
     loadChildren: () =>
-      import('./pages/pages.module').then((m) => m.PagesModule),
+      import('./pages/pages.routes').then((r) => r.pagesRoutes),
     // canActivate: [AuthGuard],
   },
   {
     path: 'auth',
     loadChildren: () =>
-      import('./auth/auth.module').then((m) => m.AuthModule),
-  },
+      import('./auth/auth.routes').then((r) => r.authRoutes),
+  }
 ];
