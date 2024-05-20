@@ -1,0 +1,126 @@
+<div class="relative">
+  <!-- <button (click)="onCreate()">Create Category</button> -->
+  <form
+    action=""
+    class="flex flex-col justify-center items-center"
+    [formGroup]="form"
+  >
+    <!-- Button thu chi -->
+    <div class="mt-10">
+      @for (category of listCategory; track $index) {
+      <button
+        class="h-[53px] w-[250px] px-5 py-2 border rounded-lg color-linear text-white font-semibold text-[24px]"
+        [ngClass]="{
+          'opacity-50 transition-all': category.id !== cateId
+        }"
+        (click)="onChangeType(category.id)"
+      >
+        {{ category.name }}
+      </button>
+      }
+      <!-- class="h-[53px] w-[250px] px-5 py-2 border rounded-lg color-linear text-white font-semibold opacity-50 text-[24px] hover:opacity-80 transition-all" -->
+    </div>
+
+    <!-- input nhập -->
+    <div class="mt-10 flex flex-col gap-5">
+      <!-- Ngày -->
+      <div class="border-input flex justify-between w-[1160px]">
+        <label for="date-input" class="text-[20px] font-semibold">Ngày</label>
+        <div
+          class="flex w-[900px] h-[50px] justify-center items-center rounded-lg"
+        >
+          <mat-form-field class="w-full">
+            <!-- <mat-label>Choose a date</mat-label> -->
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="issueDate"
+            />
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- Ghi chú -->
+      <div class="border-input flex justify-between w-[1160px]">
+        <label for="note-input" class="text-[20px] font-semibold"
+          >Ghi chú</label
+        >
+        <div
+          class="flex w-[900px] h-[50px] justify-between items-center rounded-lg bg-[#e6f6f7]"
+        >
+          <input
+            formControlName="note"
+            type="text"
+            id="note-input"
+            placeholder="Nhập thông tin khoản chi"
+            class="w-[750px] h-full bg-[#e6f6f7] border-none outline-none text-[16px] p-3 rounded-lg"
+          />
+        </div>
+      </div>
+      <!-- Tiền chi -->
+      <div class="border-input flex justify-between w-[1160px]">
+        <label for="data-input" class="text-[20px] font-semibold"
+          >Số tiền</label
+        >
+        <div
+          class="flex w-[900px] h-[50px] justify-between items-center pr-5 rounded-lg bg-[#e6f6f7]"
+        >
+          <input
+            formControlName="amount"
+            type="text"
+            id="data-input"
+            class="w-[750px] bg-[#e6f6f7] border-none outline-none text-[20px] font-semibold p-3 rounded-lg"
+            mask="separator.3"
+            thousandSeparator=","
+          />
+          <p class="text-[20px] font-semibold">VND</p>
+        </div>
+      </div>
+    </div>
+    <!-- Danh mục để chọn -->
+    <div class="w-[1160px] mt-10 font-semibold">
+      <p class="text-[20px] w-full m">Danh mục</p>
+      <!--List items: danh sách các mục chi tiêu -->
+      <!-- start list items tag -->
+      <div class="list-items w-full pl-20 pr-5 mt-10 flex gap-y-5">
+        @for (item of listTag; track item.name ) { @if (item.categoryId ===
+        cateId) {
+        <div
+          class="h-[104px] w-[200px] flex justify-between items-center cursor-pointer hover:bg-slate-300 p-3 rounded-lg transition-all"
+          (click)="onSelectTag(item)"
+        >
+          <div class="flex justify-center items-center">
+            <!-- <img
+            src="{{ item.icon }}"
+            alt="#"
+            class="h-[48px] w-[48px]"
+            [style.background-color]="item.color"
+          /> -->
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Example home icon"
+              [ngStyle]="{ color: item.color }"
+              [fontIcon]="item.icon"
+            ></mat-icon>
+            <p class="ml-10 font-medium text-2xl">{{ item.name }}</p>
+          </div>
+        </div>
+
+        } } @empty {
+        <li>There are no items.</li>
+        }
+      </div>
+    </div>
+    <!-- nút submit -->
+    <button
+      (click)="onSubmit()"
+      class="h-[80px] w-[606px] px-5 py-2 border rounded-lg color-linear text-white font-semibold text-[20px] hover:opacity-90 transition-all"
+    >
+      Xác nhận
+    </button>
+  </form>
+</div>

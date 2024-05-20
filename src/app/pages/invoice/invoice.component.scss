@@ -1,0 +1,33 @@
+.color-linear {
+    background-image: linear-gradient(
+      to top left,
+      rgba(164, 217, 108, 1),
+      rgba(0, 180, 103, 1)
+    );
+  }
+  
+  input[type="date"]::-webkit-inner-spin-button,
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+  }
+  
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  .border-input {
+    position: relative;
+    &::before {
+      position: absolute;
+      content: "";
+      bottom: -10px;
+      left: 0;
+      height: 1px;
+      width: 100%;
+      border: solid 1px #c4c4c4;
+    }
+  }
+  
