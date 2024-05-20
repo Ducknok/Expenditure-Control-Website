@@ -1,0 +1,75 @@
+<div class="w-[100%] h-full flex justify-between pb-5 pt-3 py-10 gap-5">
+  <div class="w-[50%] p-5">
+    <nz-calendar
+      [(nzMode)]="mode"
+      (nzPanelChange)="panelChange($event)"
+    ></nz-calendar>
+    <div class="flex justify-between px-20 mt-10">
+      <div
+        class="flex flex-col items-center justify-center p-5 color-linear text-white text-[16px] rounded-2xl"
+      >
+        <p>THU NHẬP</p>
+        <p>0 VND</p>
+      </div>
+      <div
+        class="flex flex-col items-center justify-center p-5 color-linear text-white text-[16px] rounded-2xl"
+      >
+        <p>CHI TIÊU</p>
+        <p>0 VND</p>
+      </div>
+      <div
+        class="flex flex-col items-center justify-center p-5 color-linear text-white text-[16px] rounded-2xl"
+      >
+        <p>TỔNG</p>
+        <p>0 VND</p>
+      </div>
+    </div>
+  </div>
+  <div class="flex items-center">
+    <div class="border-[2px] border-[#a4d96c] right-0 h-[90%]"></div>
+  </div>
+  <div class="h-full flex flex-col flex-1 gap-10 px-5 py-5">
+    <div
+      class="w-full h-[60px] border-[#a4d96c] border-[2px] rounded-lg relative overflow-hidden"
+    >
+      <input
+        type="text"
+        placeholder="Bạn cần tìm kiếm gì?"
+        class="w-[500px] rounded-lg text-[18px] leading-[35px] p-3 outline-none"
+      />
+      <button
+        class="px-5 py-3 color-linear rounded-lg text-white font-bold absolute top-[50%] -translate-y-[50%] right-[10px]"
+      >
+        Tìm kiếm
+      </button>
+    </div>
+    <div class="">
+      <div
+        class="mb-5 flex justify-between items-center h-16 color-linear px-7 rounded-lg text-white text-[20px]"
+      >
+        <p>27/09/2024</p>
+        <p>126,000 VND</p>
+      </div>
+      <div class="list-items w-full flex flex-col gap-y-5 custom-scrollbar">
+        @for (item of listCategory; track item.name ) {
+        <div
+          class="flex justify-between items-center cursor-pointer hover:bg-slate-300 p-3 rounded-lg transition-all"
+        >
+          <div class="flex justify-center items-center">
+            <img src="{{ item.icon }}" alt="#" class="h-[48px] w-[48px]" />
+            <p class="ml-10 font-medium text-2xl">{{ item.name }}</p>
+            <span class="ml-5">( {{ item.note }} )</span>
+          </div>
+          <img
+            src="../assets/icon/rightTag.svg"
+            alt="#"
+            class="h-[32px] w-[32px]"
+          />
+        </div>
+        } @empty {
+        <li>There are no items.</li>
+        }
+      </div>
+    </div>
+  </div>
+</div>
